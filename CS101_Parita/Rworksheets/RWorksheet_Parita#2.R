@@ -46,6 +46,7 @@ Month <- c("Jan", "Feb", "March", "Apr", "May", "June")
 Price_per_liter_PhP <- c(52.50, 57.25, 60.00, 65.00, 74.25, 54.00)
 Purchase_quantity_Liters <- c(25, 30, 40, 50, 10, 45)
 
+# 6a.
 df <- data.frame(
   Month = Month,
   Price_per_liter_PhP = Price_per_liter_PhP,
@@ -53,3 +54,5 @@ df <- data.frame(
 )
 
 df
+# 6b. 
+weighted.mean(Price_per_liter_PhP, Purchase_quantity_Liters)

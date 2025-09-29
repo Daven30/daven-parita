@@ -1,0 +1,30 @@
+---
+title: 'Lab Exercise #1'
+author: "Daven M. Parita"
+date: "2025-09-29"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# 1a.
+vector1 <- c(-5:5)
+vector1
+# the output is a series of numbers from -5 up to 5
+
+# 1b.
+x <- 1:7
+x
+# the value of x will be 1, 2, 3, 4, 5, 6, and 7
+```
+
+```{r}
+#  2a.
+seq1 <- seq(1, 3, by=0.2)
+seq1
+# the output is a series of number starting from 1 to 3 by 0.2 increment size
+```
+
