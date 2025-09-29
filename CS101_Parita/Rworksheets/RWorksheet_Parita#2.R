@@ -46,4 +46,10 @@ Month <- c("Jan", "Feb", "March", "Apr", "May", "June")
 Price_per_liter_PhP <- c(52.50, 57.25, 60.00, 65.00, 74.25, 54.00)
 Purchase_quantity_Liters <- c(25, 30, 40, 50, 10, 45)
 
-diesel <- data.frame(Month = Month, Price_per_liter_PhP = Price per liter (PHP), Purchase_quantity_Liters = Purchase quantity liter (PHP))
+df <- data.frame(
+  Month = Month,
+  Price_per_liter_PhP = Price_per_liter_PhP,
+  Purchase_quantity_Liters = Purchase_quantity_Liters
+)
+
+df
