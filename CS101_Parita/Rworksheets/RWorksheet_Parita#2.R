@@ -1,28 +1,34 @@
-# 1a.
+# 1. Create a vector using : operator
+# a. Describe its output.
 vector1 <- c(-5:5)
 vector1
 # the output is a series of numbers from -5 up to 5
 
-# 1b.
+# b. What will be the value of x?
 x <- 1:7
 x
 # the value of x will be 1, 2, 3, 4, 5, 6, and 7
 
-#  2a.
+# 2. Create a vector using seq() function
+# a. Describe the output.
 seq1 <- seq(1, 3, by=0.2)
 seq1
 # the output is a series of number starting from 1 to 3 by 0.2 increment size
 
-# 3a.
-age <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 35, 24,33, 41, 53, 40, 18, 44, 38, 41, 48, 27, 39, 19, 30, 61, 54, 58, 26, 18)
+# 3. 
+age <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20,
+         57, 49, 50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 35, 24,33, 41, 53, 40, 
+         18, 44, 38, 41, 48, 27, 39, 19, 30, 61, 54, 58, 26, 18)
+
+# a. Access 3rd element, what is the value?
 age[3]
 # the value is 22
 
-# 3b.
+# b. Access 2nd and 4th element, what are the values?
 age[c(2, 4)]
 # the values are 28 and 36
 
-# 3c.
+# c. Access all but the 1st element is not included. Write the R code and its output.
 age[c(2:50)]
 # OUTPUT
 #> # 3b.
@@ -39,11 +45,12 @@ age[c(2:50)]
 x <- c("first"=3, "second"=0, "third"=9)
 x
 
-# 4a.
+# a. Print the results. Then access x[c("first", "third")]. Describe the output.
 x[c("first", "third")]
 # the output is displays a 2x2 table with the corresponding columns and rows
 
-# 4b. OUTPUT
+# b. Write the code and its output.
+# OUTPUT
 #x <- c("first"=3, "second"=0, "third"=9)
 #> x
 #first second  third 
@@ -60,13 +67,14 @@ x[c("first", "third")]
 #first second  third 
 #3      0      9
 
-# 5.
+# 5. Create a sequence x from -3:2.
 x <- seq(-3:2)
 
-# 5a.
+# a. Modify 2nd element and change it to 0; Describe the output.
 x[2] <- 0
 x
-# 5b. OUTPUT
+# 5b. Write the code and its output. 
+# OUTPUT
 #> x[2] <- 0
 #> x
 #[1] 1 0 3 4 5 6
@@ -76,7 +84,7 @@ Month <- c("Jan", "Feb", "March", "Apr", "May", "June")
 Price_per_liter_PhP <- c(52.50, 57.25, 60.00, 65.00, 74.25, 54.00)
 Purchase_quantity_Liters <- c(25, 30, 40, 50, 10, 45)
 
-# 6a.
+# a. Create a data frame for month, price per liter (php) and purchase-quantity (liter). Write the codes.
 df <- data.frame(
   Month = Month,
   Price_per_liter_PhP = Price_per_liter_PhP,
@@ -84,18 +92,21 @@ df <- data.frame(
 )
 
 df
-# 6b. 
+# b. What is the average fuel expenditure of Mr. Cruz from Jan to June? Note: Use weighted.mean(liter, purchase)
 weighted.mean(Price_per_liter_PhP, Purchase_quantity_Liters)
 
 # 7.
-# 7a. 
+# a. Type “rivers” in your R console. Create a vector data with 7
+# elements, containing the number of elements (length) in rivers,
+# their sum (sum), mean (mean), median (median), variance (var)
+# standard deviation (sd), minimum (min) and maximum (max).
 data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers),
           sd(rivers), min(rivers), max(rivers))
 data
-# 7b.
-# the result are 141, 83357, 591.1844, 425, 243908, 493, 135,  and 3710
+# b. What are the results?
+# the result are 141, 83357, 591.1844, 425, 243908, 493, 135,  and 3710 correspondingly
 
-# 7c.
+# c. Write the code and its outputs.
 #data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers),
 #          +           sd(rivers), min(rivers), max(rivers))
 #> data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers),
@@ -104,6 +115,7 @@ data
 #[1]    141.0000  83357.0000    591.1844    425.0000 243908.4086    493.8708    135.0000   3710.0000
 
 # 8.
+# a. Create vectors according to the above table. Write the codes.
 Power_Ranking <- c(1:25)
 
 Celebrity_Name <- c(
@@ -120,7 +132,16 @@ Pay_Millions <- c(
   40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31
 )
 
-print("Celebrity Names:")
-print(head(Celebrity_Name))
-print("Pay (Millions):")
-print(head(Pay_Millions))
+# b. Modify the power ranking and pay of J.K. Rowling. Change power ranking to 15 and pay to 90. Write the codes and its output.
+Power_Ranking[19] <- 15
+Pay_Millions[19] <- 90
+
+
+# c. Interpret the data.
+
+Modified_Data <- data.frame(
+  Ranking = Power_Ranking, 
+  Celebrity = Celebrity_Name, 
+  Pay = Pay_Millions)
+
+Modified_Data
