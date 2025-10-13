@@ -1,0 +1,121 @@
+---
+title: "RWorksheet_Parita#3a"
+output: html_document
+---
+
+###1 Vectors
+```{r}
+# 1.
+# a.
+FIRST11 <- LETTERS[1:11]
+
+# b.
+ODDLETTERS <- LETTERS[seq(1, 25, by = 2)]
+
+# c.
+VOWELS <- LETTERS[c(1, 5, 9, 15, 21)]
+
+# d.
+last5 <- letters[22:26]
+
+# e. 
+midletters <- letters[16:23]
+```
+
+###2
+```{r}
+# 2.
+# a.
+city <-c("Tuguegarao City","Manila City","Iloilo City","Tacloban City","Samal Island","Davao City")
+
+# b.
+temp <- c(42, 39, 34, 34, 30, 27)
+
+# c.
+citytemp <- data.frame(city, temp)
+
+# d.
+names(citytemp)[1] <- "City"
+names(citytemp)[2] <- "Temperature"
+citytemp
+
+# e.
+str(citytemp)
+# The output displays the total numbers of objects and variables
+
+# f.
+# The content of rows 3 and 4 are Iloilo and Tacloban City both with 34 in temperature
+
+# g.
+print(citytemp[1,])
+print(citytemp[6,])
+```
+
+###1 Matrices
+```{r}
+# 1.
+matrix(c(5,6,7,4,3,2,1,2,3,7,8,9),nrow = 2)
+
+matrix(data = c(3,4,5,6,7,8),3,2)
+
+diag(1,nrow = 6,ncol = 5)
+
+diag(6)
+```
+
+###2
+```{r}
+# a.
+oneeight <- matrix(c(1:8, 11:14),3,4)
+oneeight
+
+# b.
+oneeight2 <- oneeight * 2
+oneeight2
+
+# c.
+oneeight[2,]
+oneeight2[2,]
+
+# d.
+oneeight[1:2, 3:4]
+
+# e.
+oneeight[3, 2:3]
+
+# f..
+oneeight[,4]
+
+# g.
+dimnames(oneeight2) <- list(c("isa","dalawa","tatlo"), c("uno","dos","tres","quatro"))
+oneeight2
+
+# h.
+dim(oneeight) <- c(6,2)
+oneeight
+```
+
+###3 Array
+```{r}
+array_dta <- array(c(1:24), c(3,4,2))
+array_dta
+
+dim(array_dta)
+
+length(array_dta)
+
+vectorA <- c(1:24)
+
+an_Array <- array(vectorA, dim = c(3,4,2))
+an_Array
+
+# 3.
+# a.
+awch <- array(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), dim = c(2, 4, 2))
+
+# b.
+dim(awch)
+
+# c.
+```
+
