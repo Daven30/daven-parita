@@ -111,11 +111,16 @@ an_Array
 
 # 3.
 # a.
-awch <- array(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), dim = c(2, 4, 2))
+awch <- array(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), dim = c(2, 4, 3))
 
 # b.
 dim(awch)
 
 # c.
+rownames(awch) <- c("a","b")
+colnames(awch) <- c("A","B","C","D")
+
+dimnames(awch)[3] <- list(c("1st-Dimension", "2nd-Dimension", "3rd-Dimension"))
+awch
 ```
 
