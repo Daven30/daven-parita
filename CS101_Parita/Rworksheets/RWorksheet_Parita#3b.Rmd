@@ -61,5 +61,53 @@ stringsAsFactors=FALSE)
 
 print("Structure of the empty dataframe:")
 print(str(df))
+
+#a. Describe the results.
+#The result is a summary of the data frame (0 observation of 5 variables, all
+#data types listed and a factor with 0 levels)
+#The result is a NULL
+```
+
+###3
+```{r}
+#Create a .csv file of this. Save it as HouseholdData.csv
+
+#a. Import the csv file into the R environment. Write the codes.
+HouseholdData <- read.csv("HouseholdData.csv")
+print(HouseholdData)
+
+#b. Convert the Sex into factor using factor() function and change it into integer.[Legend:
+#Male = 1 and Female = 2]. Write the R codes and its output.
+
+sex_factor <- factor(HouseholdData$Sex, levels = c("Male", "Female"))
+sex_integer <- as.integer(sex_factor)
+table(HouseholdData$Sex, sex_integer)
+str(HouseholdData)
+
+print(sex_factor)
+print(sex_integer)
+
+#c. Convert the Type of Houses into factor and change it into integer. [Legend: Wood
+#= 1; Congrete = 2; Semi-Congrete = 3]. Write the R codes and its output.
+house_type_factor <- factor(HouseholdData$Types.of.Houses, levels = c("Wood", "Congrete", "Semi-Congrete"))
+house_type_integer <- as.integer(house_type_factor)
+
+house_type_factor
+house_type_integer
+
+#d. On father’s occupation, factor it as Farmer = 1; Driver = 2; and Others = 3. What
+#is the R code and its output?
+occupation_labels <- c("Farmer", "Driver", "Others")
+occupation_text <- occupation_labels[HouseholdData$Fathers.Occupation]
+fathers_occ_factor <- factor(occupation_text, levels = c("Farmer", "Driver", "Others"))
+fathers_occ_integer <- as.integer(fathers_occ_factor)
+
+fathers_occ_factor
+fathers_occ_integer
+
+#e. Select only all females respondent that has a father whose occupation is driver. Write
+#the codes and its output.
+
+HouseholdData[HouseholdData$Sex == 2 && HouseholdData$Fathers.Occupation == 2,]
 ```
 
