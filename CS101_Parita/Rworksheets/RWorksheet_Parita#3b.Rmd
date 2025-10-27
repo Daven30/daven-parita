@@ -14,7 +14,7 @@ persons_home <- c(5, 7, 3, 8, 5, 9, 6, 7, 8, 4, 7, 5, 4, 7, 8, 8, 3, 11, 7, 6)
 siblings_at_school <- c(6, 4, 4, 1, 2, 1, 5, 3, 1, 2, 3, 2, 5, 5, 2, 1, 2, 5, 3, 2)
 house_type <- c(1, 2, 3, 1, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2, 3, 3, 3, 3, 3, 2)
 
-info <- data.frame("Respondednts" = respondents, "Sex" = sex, "Fathers Occupation" = fathers_occ, "Persons at home" = persons_home, "Siblings at school" = siblings_at_school, "Types of houses" = house_type)
+info <- data.frame("Respondents" = respondents, "Sex" = sex, "Fathers Occupation" = fathers_occ, "Persons at home" = persons_home, "Siblings at school" = siblings_at_school, "Types of houses" = house_type)
 
 #b. Describe the data. Get the structure or the summary of the data
 # The data contains information about students' personal information
@@ -24,29 +24,30 @@ str(info)
 mean(siblings_at_school)
 #The answer is 2.95 so no.
 
-#d. Extract the 1st two rows and then all the columns using the sub-setting functions.
-#Write the codes and its output.
+#d. Extract the 1st two rows and then all the columns using the sub-setting
+# functions. Write the codes and its output.
 info_subset <- info[1:2,]
 
 print(info_subset)
 
-#e. Extract 3rd and 5th row with 2nd and 4th column. Write the codes and its result.
+#e. Extract 3rd and 5th row with 2nd and 4th column. Write the codes and its
+#result.
 info_subset2 <- info[c(3,5), c(2,4)]
 
 print(info_subset2)
 
-#f. Select the variable types of houses then store the vector that results as types_houses.
-#Write the codes.
+#f. Select the variable types of houses then store the vector that results as
+#types_houses. Write the codes.
 
 types_houses <- info$Types.of.houses
 
-#g. Select only all Males respondent that their father occupation was farmer. Write the
-#codes and its output.
+#g. Select only all Males respondent that their father occupation was farmer.
+#Write the codes and its output.
 M_Farmer <- info[info$Sex == 1 & info$Fathers.Occupation == 1, ]
 M_Farmer
 
-#h. Select only all females respondent that have greater than or equal to 5 number of
-#siblings attending school. Write the codes and its outputs.
+#h. Select only all females respondent that have greater than or equal to 5
+#number of siblings attending school. Write the codes and its outputs.
 F_Siblings <- info[info$Sex == 2 & info$Siblings.at.school >= 5, ]
 F_Siblings
 ```
@@ -61,5 +62,8 @@ stringsAsFactors=FALSE)
 
 print("Structure of the empty dataframe:")
 print(str(df))
+#a. Describe the results.
+# It says that there are 0 observations of 5 variables. Printing it results to
+#NULL.
 ```
 
