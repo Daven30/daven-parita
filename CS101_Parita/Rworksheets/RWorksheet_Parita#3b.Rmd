@@ -67,3 +67,55 @@ print(str(df))
 #NULL.
 ```
 
+###3
+```{r}
+#Create a .csv file of this. Save it as HouseholdData.csv
+#a. Import the csv file into the R environment. Write the codes.
+household <- read.csv("HouseholdData.csv")
+print(household)
+
+#b. Convert the Sex into factor using factor() function and change it into integer.[Legend: Male = 1 and Female = 2]. Write the R codes and its output.
+household$Sex <- factor(household$Sex, levels = c("Male", "Female"))
+household$SexInt <- as.integer(household$Sex)
+print(household[, c("Sex", "SexInt")])
+
+#c. Convert the Type of Houses into factor and change it into integer. [Legend: Wood = 1; Concrete = 2; Semi-Concrete = 3]. Write the R codes and its output.
+household$Types.of.Houses <- factor(household$Types.of.Houses, levels = c("Wood", "Congrete", "Semi-Congrete"))
+household$Types.of.HousesInt <- as.integer(household$Types.of.Houses)
+print(household[, c("Types.of.Houses", "Types.of.HousesInt")])
+
+#d. On father’s occupation, factor it as Farmer = 1; Driver = 2; and Others = 3. What
+#is the R code and its output?
+household$Fathers.Occupation <- factor(household$Fathers.Occupation, levels = c(1, 2, 3), labels = c("Farmer", "Driver", "Other"))
+household$Fathers.OccupationInt <- as.integer(household$Fathers.Occupation)
+print(household[, c("Fathers.Occupation", "Fathers.OccupationInt")])
+
+#e. Select only all females respondent that has a father whose occupation is driver. Write
+#the codes and its output.
+filtered_a <- household[
+  household$Sex == "Female" & household$Fathers.Occupation == "Driver",]
+filtered_a
+
+#f. Select the respondents that have greater than or equal to 5 number of siblings attending
+#school. Write the codes and its output.
+filtered_b <- household[household$Siblings.at.School >= 5,]
+filtered_b
+```
+
+###4
+```{r}
+date_data <- c("July 14, 2020", "July 15, 2020", "July 17, 2020", "July 18, 2020", "July 20, 2020", "July 21, 2020")
+
+negative <- c(2450, 4200, 3250, 3250, 2350, 4050)
+neutral <- c(1575, 2800, 1900, 2050, 1450, 2700)
+positive <- c(1725, 3200, 2400, 2525, 1700, 3375)
+
+sentiments_tweets_df <- data.frame(
+    Date = as.Date(date_data, format = "%B %d, %Y"),
+    Negative = negative,
+    Neutral = neutral,
+    Positive = positive)
+
+print(sentiments_tweets_df)
+```
+
