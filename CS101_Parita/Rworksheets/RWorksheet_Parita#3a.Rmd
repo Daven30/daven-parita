@@ -10,16 +10,24 @@ output:
 # 1.
 # a.
 FIRST11 <- LETTERS[1:11]
+```
 
+```{r}
 # b.
 ODDLETTERS <- LETTERS[seq(1, 25, by = 2)]
+```
 
+```{r}
 # c.
 VOWELS <- LETTERS[c(1, 5, 9, 15, 21)]
+```
 
+```{r}
 # d.
 last5 <- letters[22:26]
+```
 
+```{r}
 # e. 
 midletters <- letters[16:23]
 ```
@@ -29,25 +37,35 @@ midletters <- letters[16:23]
 # 2.
 # a.
 city <-c("Tuguegarao City","Manila City","Iloilo City","Tacloban City","Samal Island","Davao City")
+```
 
+```{r}
 # b.
 temp <- c(42, 39, 34, 34, 30, 27)
+```
 
+```{r}
 # c.
 citytemp <- data.frame(city, temp)
+```
 
+```{r}
 # d.
 names(citytemp)[1] <- "City"
 names(citytemp)[2] <- "Temperature"
 citytemp
+```
 
+```{r}
 # e.
 str(citytemp)
 # The output displays the total numbers of objects and variables
 
 # f.
 # The content of rows 3 and 4 are Iloilo and Tacloban City both with 34 in temperature
+```
 
+```{r}
 # g.
 print(citytemp[1,])
 print(citytemp[6,])
@@ -70,28 +88,42 @@ diag(6)
 # a.
 oneeight <- matrix(c(1:8, 11:14),3,4)
 oneeight
+```
 
+```{r}
 # b.
 oneeight2 <- oneeight * 2
 oneeight2
+```
 
+```{r}
 # c.
 oneeight[2,]
 oneeight2[2,]
+```
 
+```{r}
 # d.
 oneeight[1:2, 3:4]
+```
 
+```{r}
 # e.
 oneeight[3, 2:3]
+```
 
+```{r}
 # f..
 oneeight[,4]
+```
 
+```{r}
 # g.
 dimnames(oneeight2) <- list(c("isa","dalawa","tatlo"), c("uno","dos","tres","quatro"))
 oneeight2
+```
 
+```{r}
 # h.
 dim(oneeight) <- c(6,2)
 oneeight
@@ -114,10 +146,14 @@ an_Array
 # 3.
 # a.
 awch <- array(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), dim = c(2, 4, 3))
+```
 
+```{r}
 # b.
 dim(awch)
+```
 
+```{r}
 # c.
 rownames(awch) <- c("a","b")
 colnames(awch) <- c("A","B","C","D")

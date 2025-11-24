@@ -11,41 +11,58 @@ respondents <- c(1:20)
 sex <- c(2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2)
 fathers_occ <- c(1, 3, 3, 3, 1, 2, 3, 1, 1, 1, 3, 2, 1, 3, 3, 1, 3, 1, 2, 1)
 persons_home <- c(5, 7, 3, 8, 5, 9, 6, 7, 8, 4, 7, 5, 4, 7, 8, 8, 3, 11, 7, 6)
-siblings_at_school <- c(6, 4, 4, 1, 2, 1, 5, 3, 1, 2, 3, 2, 5, 5, 2, 1, 2, 5, 3, 2)
+siblings_at_school <- c(6, 4, 4, 1, 2, 1, 5, 3, 1, 2, 3, 2, 5, 5, 2, 1, 2, 5, 3,
+                        2)
 house_type <- c(1, 2, 3, 1, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2, 3, 3, 3, 3, 3, 2)
 
-info <- data.frame("Respondents" = respondents, "Sex" = sex, "Fathers Occupation" = fathers_occ, "Persons at home" = persons_home, "Siblings at school" = siblings_at_school, "Types of houses" = house_type)
+info <- data.frame("Respondents" = respondents, "Sex" = sex, 
+"Fathers Occupation" = fathers_occ, "Persons at home" = persons_home, 
+"Siblings at school" = siblings_at_school, "Types of houses" = house_type)
+```
 
+```{r str}
 #b. Describe the data. Get the structure or the summary of the data
 # The data contains information about students' personal information
 str(info)
+```
 
+```{r}
 #c. Is the mean number of siblings attending 5?
 mean(siblings_at_school)
 #The answer is 2.95 so no.
+```
 
+```{r}
 #d. Extract the 1st two rows and then all the columns using the sub-setting
 # functions. Write the codes and its output.
 info_subset <- info[1:2,]
 
 print(info_subset)
+```
 
+```{r}
 #e. Extract 3rd and 5th row with 2nd and 4th column. Write the codes and its
 #result.
 info_subset2 <- info[c(3,5), c(2,4)]
 
 print(info_subset2)
+```
 
+```{r}
 #f. Select the variable types of houses then store the vector that results as
 #types_houses. Write the codes.
 
 types_houses <- info$Types.of.houses
+```
 
+```{r}
 #g. Select only all Males respondent that their father occupation was farmer.
 #Write the codes and its output.
 M_Farmer <- info[info$Sex == 1 & info$Fathers.Occupation == 1, ]
 M_Farmer
+```
 
+```{r}
 #h. Select only all females respondent that have greater than or equal to 5
 #number of siblings attending school. Write the codes and its outputs.
 F_Siblings <- info[info$Sex == 2 & info$Siblings.at.school >= 5, ]
@@ -54,7 +71,7 @@ F_Siblings
 
 ###2
 ```{r}
-df = data.frame(Ints=integer(),
+df <- data.frame(Ints=integer(),
 Doubles=double(), Characters=character(),
 Logicals=logical(),
 Factors=factor(),
@@ -73,38 +90,54 @@ print(str(df))
 #a. Import the csv file into the R environment. Write the codes.
 household <- read.csv("HouseholdData.csv")
 print(household)
+```
 
-#b. Convert the Sex into factor using factor() function and change it into integer.[Legend: Male = 1 and Female = 2]. Write the R codes and its output.
+```{r}
+#b. Convert the Sex into factor using factor() function and change it into 
+# integer.[Legend: Male = 1 and Female = 2]. Write the R codes and its output.
 household$Sex <- factor(household$Sex, levels = c("Male", "Female"))
 household$SexInt <- as.integer(household$Sex)
 print(household[, c("Sex", "SexInt")])
+```
 
-#c. Convert the Type of Houses into factor and change it into integer. [Legend: Wood = 1; Concrete = 2; Semi-Concrete = 3]. Write the R codes and its output.
-household$Types.of.Houses <- factor(household$Types.of.Houses, levels = c("Wood", "Congrete", "Semi-Congrete"))
+```{r}
+#c. Convert the Type of Houses into factor and change it into integer. 
+#[Legend: Wood = 1; Concrete = 2; Semi-Concrete = 3]. Write the R codes and its 
+#output.
+household$Types.of.Houses <- factor(household$Types.of.Houses, levels = 
+                                      c("Wood", "Congrete", "Semi-Congrete"))
 household$Types.of.HousesInt <- as.integer(household$Types.of.Houses)
 print(household[, c("Types.of.Houses", "Types.of.HousesInt")])
+```
 
-#d. On father’s occupation, factor it as Farmer = 1; Driver = 2; and Others = 3. What
-#is the R code and its output?
-household$Fathers.Occupation <- factor(household$Fathers.Occupation, levels = c(1, 2, 3), labels = c("Farmer", "Driver", "Other"))
+```{r}
+#d. On father’s occupation, factor it as Farmer = 1; Driver = 2; and Others = 3.
+#What is the R code and its output?
+household$Fathers.Occupation <- factor(household$Fathers.Occupation, levels = 
+                           c(1, 2, 3), labels = c("Farmer", "Driver", "Other"))
 household$Fathers.OccupationInt <- as.integer(household$Fathers.Occupation)
 print(household[, c("Fathers.Occupation", "Fathers.OccupationInt")])
+```
 
-#e. Select only all females respondent that has a father whose occupation is driver. Write
-#the codes and its output.
+```{r}
+#e. Select only all females respondent that has a father whose occupation is 
+#driver. Write the codes and its output.
 filtered_a <- household[
   household$Sex == "Female" & household$Fathers.Occupation == "Driver",]
 filtered_a
+```
 
-#f. Select the respondents that have greater than or equal to 5 number of siblings attending
-#school. Write the codes and its output.
+```{r}
+#f. Select the respondents that have greater than or equal to 5 number of 
+#siblings attending school. Write the codes and its output.
 filtered_b <- household[household$Siblings.at.School >= 5,]
 filtered_b
 ```
 
 ###4
 ```{r}
-date_data <- c("July 14, 2020", "July 15, 2020", "July 17, 2020", "July 18, 2020", "July 20, 2020", "July 21, 2020")
+date_data <- c("July 14, 2020", "July 15, 2020", "July 17, 2020", 
+               "July 18, 2020", "July 20, 2020", "July 21, 2020")
 
 negative <- c(2450, 4200, 3250, 3250, 2350, 4050)
 neutral <- c(1575, 2800, 1900, 2050, 1450, 2700)
@@ -116,7 +149,11 @@ sentiments_tweets_df <- data.frame(
     Neutral = neutral,
     Positive = positive)
 
-
 print(sentiments_tweets_df)
+
+#The most interesting part about this tweet data are the spikes of negative 
+#tweets on the days July 14 and 21. Another thing is that the numbers are 
+#proportional on all days with negative tweets being the highest, neutral the
+#lowest, and positive in between them.
 ```
 
