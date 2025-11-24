@@ -161,4 +161,3 @@ colnames(awch) <- c("A","B","C","D")
 dimnames(awch)[3] <- list(c("1st-Dimension", "2nd-Dimension", "3rd-Dimension"))
 awch
 ```
-
