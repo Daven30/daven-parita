@@ -37,12 +37,17 @@ maleSet <- shoes_df %>%
   filter(Gender == "M") %>%
   select(Shoe.size, Height)
 
+maleSet2 <- subset(shoes_df, gender == "M")
+femaleSet2 <- subset(shoes_df, gender == "F")
+
 femaleSet <- shoes_df %>%
   filter(Gender == "F") %>%
   select(Shoe.size, Height)
 
 maleSet
 femaleSet
+maleSet2
+femaleSet2
 ```
 
 ### c.
@@ -53,4 +58,186 @@ cat("the mean of Shoe size is:", shoe_size_mean)
 
 height_mean <- mean(shoes_df$Height)
 cat("\nthe mean of height is:", height_mean)
+```
+
+### d.
+
+The relationship between shoe size and height is quite linear. The taller the height value, the bigger the shoe size is. Although this is not the case for some of the observations.
+
+# Factors
+
+### 2.
+
+```{r}
+months_vector <- c("March","April","January","November","January", "September","October","September","November","August", "January","November","November" ,"February","May","August", "July","December","August","August","September" ,"November","February", "April")
+
+factor_months_vector <- factor(months_vector)
+factor_months_vector
+```
+
+### 3.
+
+```{r}
+summary(months_vector)
+summary(factor_months_vector)
+```
+
+### 4.
+
+```{r}
+directions <- c("East", "West", "North")
+
+factor_directions <- factor(directions, levels = c("East", "West", "North"))
+print(factor_directions)
+```
+
+### 5.
+
+### a.
+
+```{r}
+strategy_excel <- read.table("import_march.csv",
+                             sep = ",",
+                             header = TRUE)
+```
+
+### b.
+
+```{r}
+View(strategy_excel)
+```
+
+# Using Conditional Statements (IF-ELSE)
+
+### 6.
+
+### a.
+
+```{r}
+random_number <- sample(1:50, 1)
+
+cat("--- Random Selection ---\n")
+cat("The randomly chosen number (1 to 50) is:", random_number, "\n")
+cat("------------------------\n\n")
+
+user_input_str <- readline(prompt = "Enter a whole number: ")
+
+user_number <- as.numeric(user_input_str)
+
+cat("\n--- Result ---\n")
+
+if (is.na(user_number)) {
+    cat("Invalid input. Please enter a number.\n")
+} else if (user_number < 1 | user_number > 50) {
+    cat("The number selected is beyond the range of 1 to 50\n")
+} else if (user_number == 20) {
+    cat("TRUE\n")
+} else {
+    cat("The input number is:", user_number, "\n")
+}
+cat("--------------\n")
+```
+
+### 7.
+
+### a.
+
+```{r}
+BILL_DENOMINATIONS <- c(1000, 500, 200, 100, 50)
+
+calculate_min_bills <- function(price) {
+  if (price <= 0 || price %% 50 != 0) {
+    stop("Error: Price must be a positive number divisible by 50.")
+  }
+
+  remaining_price <- price
+  total_bills <- 0
+  bill_counts <- list()
+
+  cat("--- Snack Purchase Analysis ---\n")
+  cat(paste("Price of Snack:", price, "Pesos\n"))
+  cat("-------------------------------\n")
+
+  for (bill in BILL_DENOMINATIONS) {
+    count <- floor(remaining_price / bill)
+
+    if (count > 0) {
+      bill_counts[[as.character(bill)]] <- count
+
+      remaining_price <- remaining_price - (count * bill)
+
+      total_bills <- total_bills + count
+    }
+  }
+
+  cat("Breakdown of Bills Used:\n")
+  for (bill_value in names(bill_counts)) {
+    cat(paste("  ", bill_counts[[bill_value]], "x", bill_value, "Pesos\n"))
+  }
+
+  cat(paste("\nMinimum number of bills needed:", total_bills, "\n"))
+  cat("-------------------------------\n")
+
+  invisible(total_bills)
+}
+
+calculate_min_bills(1000)
+```
+
+### 8.
+
+### a.
+
+```{r}
+Name <- c("Annie", "Thea", "Steve", "Hanna")
+Grade1 <- c(85, 65, 75, 95)
+Grade2 <- c(65, 75, 55, 75)
+Grade3 <- c(85, 90, 80 ,100)
+Grade4 <- c(100, 90, 85, 90)
+
+math_scores <- data.frame(Name, Grade1, Grade2, Grade3, Grade4)
+
+```
+
+### b.
+
+```{r}
+math_scores$Average <- apply(math_scores[, 2:5], 1, mean)
+
+print_student_averages <- function(df) {
+  for (i in 1:nrow(df)) {
+    cat(paste0(df$Name[i], "'s average grade this semester is ", df$Average[i], ".\n"))
+  }
+}
+
+print_student_averages(math_scores)
+```
+
+### c.
+
+```{r}
+grade_averages <- apply(math_scores[, 2:5], 2, mean)
+
+difficult_tests <- names(grade_averages[grade_averages < 80])
+
+for (test_name in difficult_tests) {
+  test_number <- sub("Grade", "", test_name)
+  cat(paste0("The ", test_number, "th test was difficult (Avg: ", grade_averages[test_name], ").\n"))
+}
+```
+
+### d.
+
+```{r}
+highest_scores <- apply(math_scores[, 2:5], 1, function(x) {
+  return(sort(x, decreasing = FALSE)[length(x)]) 
+})
+
+math_scores$Highest <- highest_scores
+
+high_score_students <- subset(math_scores, Highest > 90)
+
+for (i in 1:nrow(high_score_students)) {
+    cat(paste0(high_score_students$Name[i], "'s highest grade this semester is ", high_score_students$Highest[i], ".\n"))
+}
 ```
