@@ -21,6 +21,7 @@ shoes_df <- data.frame(
   "Height" = height,
   "Gender" = gender
 )
+write.csv(shoes_df, file.choose())
 View(shoes_df)
 ```
 

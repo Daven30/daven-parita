@@ -1,0 +1,170 @@
+---
+title: "RWorksheet_parita#4b"
+author: "Daven Parita"
+date: "2025-12-11"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Using Loop Function
+
+### 1.
+
+```{r}
+ROWS <- 5
+COLS <- 5
+
+matrix_A <- matrix(0, nrow = ROWS, ncol = COLS)
+
+vectorA <- c(1, 2, 3, 4, 5)
+
+for (i in 1:ROWS) {
+  for (j in 1:COLS) {
+    
+    row_index_0based <- i - 1
+    col_index_0based <- j - 1
+    
+    matrix_A[i, j] <- abs(row_index_0based - col_index_0based)
+  }
+}
+
+print(matrix_A)
+```
+
+### 2.
+
+```{r}
+NUM_ROWS <- 5
+
+for (i in 1:NUM_ROWS) {
+
+  stars <- paste0(rep("*", i))
+  cat(stars, "\n")
+}
+```
+
+### 3.
+
+```{r}
+start_num <- as.integer(readline(prompt = "Enter the starting number for the Fibonacci sequence: "))
+
+a <- 0
+b <- 1
+
+fib_sequence <- c()
+
+repeat {
+  if (a >= start_num) {
+    current <- a 
+    previous <- b
+    
+    a_new <- 0
+    b_new <- 1
+    
+    repeat {
+      temp <- a_new + b_new
+      a_new <- b_new
+      b_new <- temp
+      
+      if (a_new >= start_num) {
+        current <- a_new
+        previous <- b_new - a_new
+        break
+      }
+    }
+    break
+  }
+  
+  temp <- a + b
+  a <- b
+  b <- temp
+}
+
+repeat {
+  
+  if (current > 500) {
+    break
+  }
+  
+  fib_sequence <- c(fib_sequence, current)
+  
+  next_num <- previous + current
+  
+  previous <- current
+  current <- next_num
+}
+
+cat("\n--- Output ---\n")
+cat("Fibonacci sequence starting from the first number >= ", start_num, " and up to 500:\n")
+print(fib_sequence)
+```
+
+# Using Basic Graphics
+
+### 4.
+
+### b.
+
+```{r}
+shoes <- read.csv("Household.csv",
+                  sep = ",",
+                  header = TRUE)
+head(shoes)
+```
+
+### b.
+
+```{r}
+shoes_male <- subset(shoes, Gender == "M")
+shoes_female <- subset(shoes, Gender == "F")
+
+str(shoes_male)
+str(shoes_female)
+```
+
+### c.
+
+```{r}
+household_data <- read.csv("Household.csv")
+
+gender_counts <- table(household_data$Gender)
+
+names(gender_counts) <- c("Female", "Male")
+
+barplot(
+  gender_counts,
+  main = "Number of Males and Females for Household Data",
+  xlab = "Gender",
+  ylab = "Number of Observations",
+  col = c("pink", "lightblue"),
+  ylim = c(0, max(gender_counts) * 1.1)                   
+)
+
+legend("topright",
+       legend = names(gender_counts),
+       fill = c("pink", "lightblue"),
+       title = "Gender")
+```
+
+### 5.
+
+### a.
+
+```{r}
+expenditures <- c(60, 10, 5, 25)
+categories <- c("Food", "Electricity", "Savings", "Miscellaneous")
+
+colors <- c("lightgreen", "yellow", "lightblue", "pink")
+
+pct <- round(expenditures / sum(expenditures) * 100)
+
+pie_labels <- paste(categories, pct, "%", sep=" ")
+
+pie(expenditures,
+    labels = pie_labels,
+    main = "Monthly Income Expenditure of Dela Cruz Family",
+    col = colors)
+```
