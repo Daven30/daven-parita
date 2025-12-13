@@ -168,3 +168,127 @@ pie(expenditures,
     main = "Monthly Income Expenditure of Dela Cruz Family",
     col = colors)
 ```
+
+### 6.
+
+```{r}
+data("iris")
+```
+
+### a.
+
+```{r}
+str(iris)
+```
+
+The output of getting the structure of iris data shows the class, number of observations, number of variables, names of variables, and the first few observations of each variables.
+
+### b.
+
+```{r}
+sepal_length_mean <- mean(iris$Sepal.Length)
+sepal_width_mean <- mean(iris$Sepal.Width)
+petal_length_mean <- mean(iris$Petal.Length)
+petal_width_mean <- mean(iris$Petal.Width)
+
+irisMean_df <- data.frame(sepal_length_mean, 
+                          sepal_width_mean, 
+                          petal_length_mean,
+                          petal_width_mean)
+
+print(irisMean_df)
+```
+
+### c.
+
+```{r}
+data(iris)
+
+species_counts <- table(iris$Species)
+
+total_obs <- sum(species_counts)
+percentages <- round(species_counts / total_obs * 100, 1)
+pie_labels <- paste(names(species_counts), " (", percentages, "%)", sep="")
+
+pie_colors <- c("lightcoral", "lightblue", "lightgreen")
+
+pie(species_counts,
+    labels = pie_labels,
+    main = "Species Distribution in the Iris Dataset",
+    col = pie_colors,
+    clockwise = TRUE)
+
+legend("bottomright",
+       legend = names(species_counts),
+       fill = pie_colors,
+       title = "Species",
+       bty = "n")
+```
+
+### d.
+
+```{r}
+data(iris)
+
+setosa_df <- subset(iris, Species == "setosa")
+
+versicolor_df <- subset(iris, Species == "versicolor")
+
+virginica_df <- subset(iris, Species == "virginica")
+
+print(tail(setosa_df, 6))
+
+print(tail(versicolor_df, 6))
+
+print(tail(virginica_df, 6))
+```
+
+### e.
+
+```{r}
+color_map <- c("setosa" = "red", "versicolor" = "green", "virginica" = "blue")
+iris$Color <- color_map[iris$Species]
+
+pch_map <- c("setosa" = 19, "versicolor" = 17, "virginica" = 15)
+iris$Pch <- pch_map[iris$Species]
+
+plot(x = iris$Sepal.Length, y = iris$Sepal.Width,
+     
+     main = "Iris Dataset",
+     
+     sub = "Sepal width and length",
+     
+     xlab = "Sepal Length (cm)",
+     ylab = "Sepal Width (cm)",
+     
+     col = as.character(iris$Color),
+     pch = as.numeric(iris$Pch))
+
+legend("topright",
+       legend = unique(iris$Species),
+       col = unique(as.character(iris$Color)),
+       pch = unique(as.numeric(iris$Pch)),
+       title = "Species",
+       bty = "n")
+```
+
+### f.
+
+The result is a scatter plot of Sepal Length vs. Sepal Width of the three different species of flowers from the iris dataset. setosa is represented by a red circles in the scatterplot, versicolor by a green triangles, and virginica by blue squares.
+
+# Basic Cleaning and Transformation of Objects
+
+### 7.
+
+```{r}
+alexa_df <- read.csv("alexa_file.xlsx")
+
+alexa_df$variation <- trimws(alexa_df$variation)
+
+alexa_df$variation <- gsub(" +", " ", alexa_df$variation)
+
+alexa_df$variation <- gsub(" ", "", alexa_df$variation)
+
+cat("\n--- Unique Variations AFTER Cleaning and Renaming ---\n")
+print(sort(unique(alexa_df$variation)))
+```
