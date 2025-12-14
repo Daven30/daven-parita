@@ -49,7 +49,7 @@ for (i in 1:NUM_ROWS) {
 ### 3.
 
 ```{r}
-start_num <- as.integer(readline(prompt = "Enter the starting number for the Fibonacci sequence: "))
+start_num <- as.integer(1)
 
 a <- 0
 b <- 1
@@ -280,15 +280,50 @@ The result is a scatter plot of Sepal Length vs. Sepal Width of the three differ
 
 ### 7.
 
+### a.
+
 ```{r}
-alexa_df <- read.csv("alexa_file.xlsx")
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(gridExtra)
+library(readxl)
 
-alexa_df$variation <- trimws(alexa_df$variation)
+alexa_df <- read_excel("alexa_file.xlsx")
+alexa_df$variation <- str_squish(alexa_df$variation)
+alexa_df$variation <- gsub("^White.*", "White", alexa_df$variation)
+alexa_df$variation <- gsub("^Black.*", "Black", alexa_df$variation)
+```
 
-alexa_df$variation <- gsub(" +", " ", alexa_df$variation)
+### b.
 
-alexa_df$variation <- gsub(" ", "", alexa_df$variation)
+```{r}
+variations <- alexa_df %>% count(variation)
+vars <- variations$n
 
-cat("\n--- Unique Variations AFTER Cleaning and Renaming ---\n")
-print(sort(unique(alexa_df$variation)))
+```
+
+### c.
+
+```{r}
+names(vars) <- variations$variation
+barplot(vars, main="Total Alexa Variations", xlab="Variation", ylab="Count", col=rainbow(length(vars)))
+```
+
+### d.
+
+```{r}
+black_variants <- c(261, 270, 265, 241, 516, 430, 350, 157)
+black_labels <- c("Black", "Black Plus", "Black Show", "Black Spot", "Black Dot", "Charcoal Fabric", "Configuration: Fire TV Stick", "Heather Gray Fabric")
+white_variants <- c(100, 150, 90, 95, 120)
+white_labels <- c("White", "White Dot", "White Plus", "White Show", "White Spot")
+
+black_data <- data.frame(Variation = black_labels, Total = black_variants)
+white_data <- data.frame(Variation = white_labels, Total = white_variants)
+
+plot_black <- ggplot(black_data, aes(x = Variation, y = Total, fill = Variation)) + geom_bar(stat = "identity") + theme_minimal() + labs(title = "Black Variants", x = "Variation", y = "Total Numbers") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+plot_white <- ggplot(white_data, aes(x = Variation, y = Total, fill = Variation)) + geom_bar(stat = "identity") + theme_minimal() + labs(title = "White Variants", x = "Variation", y = "Total Numbers") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+grid.arrange(plot_black, plot_white, ncol = 2)
+
 ```
